@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int x = 1;
+    do
+    {
+        printf("%i", x);
+        x = x + 1;
+    }while (x <= 50);
+}
+
+
+/*
+.LC0:
+	.string	"%i\n"
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB0:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$16, %rsp
+	movl	$1, -4(%rbp)  (x = 1)
+	jmp	.L2
+.L3:
+	movl	-4(%rbp), %eax
+	movl	%eax, %esi
+	movl	$.LC0, %edi
+	movl	$0, %eax
+	call	printf
+	addl	$1, -4(%rbp)
+.L2:
+	cmpl	$50, -4(%rbp)
+	jle	.L3
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+*/
